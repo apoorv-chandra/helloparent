@@ -1,0 +1,55 @@
+package package1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class sendmessage {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String key = "webdriver.chrome.driver";
+		String value = "./exefiles/chromedriver.exe";
+		System.setProperty(key, value);
+		ChromeDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.navigate().to("https://beta-helloparent.azurewebsites.net");
+		//institute login tab click
+		driver.findElement(By.xpath(".//*[@id='page-top']/header/nav/div/div[2]/ul/li[7]/a/b")).click();
+		driver.findElement(By.xpath(".//*[@id='Email']")).sendKeys("apoorv@gmail.com");
+		driver.findElement(By.xpath(".//*[@id='Password']")).sendKeys("asdf1234");
+		//institute login button click
+		driver.findElement(By.xpath(".//*[@id='app']/div/div[2]/form/button")).click();
+	/*	//messages tab click
+		driver.findElement(By.xpath(".//*[@id='navbar-3']/ul/li[4]/a/span")).click();
+		//new message button click
+		driver.findElement(By.xpath(".//*[@id='view']/div/div/div[3]/div/div[2]/a")).click();
+		//subject of message
+		driver.findElement(By.xpath(".//*[@id='Subject']")).sendKeys("Automating messages");
+		Select s = new Select(driver.findElement(By.id("StudentIds")));
+        s.selectByValue("591ea2c83d820c047cba276e");
+        driver.findElement(By.xpath(".//*[@id='view']/div/div/div/div/div[3]/form/button")).click();
+		//wait till sent message button appears
+        WebDriverWait d1 = new WebDriverWait(driver,7);
+	    d1.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//*[@id='inbox-menu']/div/div/a[2]")));
+	    driver.findElement(By.xpath(".//*[@id='inbox-menu']/div/div/a[2]")).click();
+	 */
+	   // hover over classes tab
+		Actions actions = new Actions(driver);
+	    actions.moveToElement(driver.findElement(By.xpath(".//*[@id='navbar-3']/ul/li[1]/a"))).build().perform();
+	    // click on classes after hover
+	    driver.findElement(By.xpath(".//*[@id='navbar-3']/ul/li[1]/ul/a[1]/li")).click();
+	    //click on add new class button
+	    driver.findElement(By.xpath(".//*[@id='view']/div[1]/div/div[2]/div/div[2]/a")).click();
+	    //input for class name
+	    driver.findElement(By.id("Name")).sendKeys("Class Automation");
+	    String[] class_teacher = {"Apoo", "Te", "For"};
+	    for(int i=0; i<class_teacher.length;i++){
+	    driver.findElement(By.xpath(".//*[@id='view']/div/div/div/div[3]/form/div[3]/div/span[1]/span[1]/span")).sendKeys(class_teacher[i], Keys.ENTER);
+	    }
+	    //driver.findElement(By.xpath(".//*[@id='view']/div/div/div/div[3]/form/div[3]/div/span[1]/span[1]/span")).sendKeys("For", Keys.ENTER,"Te", Keys.ENTER);
+        //driver.quit();
+	}
+
+}
